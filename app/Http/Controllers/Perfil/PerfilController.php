@@ -13,12 +13,10 @@ class PerfilController extends Controller
         $recursos = DB::table('SEG_PERFILES')
             ->join('SEG_RECURSOS', 'SEG_RECURSOS.ID', '=', 'SEG_PERFILES.RecursoID')
             ->join('SEG_USUARIOS', 'SEG_USUARIOS.ID', '=', 'SEG_PERFILES.UsuarioID')
-            ->select('SEG_RECURSOS.*')
+            ->select('SEG_RECURSOS.Nombre', 'SEG_RECURSOS.Tipo', 'SEG_RECURSOS.ID', 'SEG_RECURSOS.PadreID', 'SEG_RECURSOS.SucursalID')
             ->where('SEG_USUARIOS.ID', '=', $IDusuario)
             ->get();
 
-        return response()->json([
-            'recursos' => $recursos
-        ]);
+        return $recursos->toArray();
     }
 }
