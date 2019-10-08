@@ -15,6 +15,8 @@
                         @else
                     @endif
 
+                    {{var_dump($recursos)}}
+
                     You are logged in!
                 </div>
             </div>
